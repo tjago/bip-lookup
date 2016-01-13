@@ -7,8 +7,19 @@
  * user guide available at https://docs.gradle.org/2.7/userguide/tutorial_java_projects.html
  */
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
+    }
+}
+
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'spring-boot'
+
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -17,10 +28,19 @@ repositories {
     jcenter()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.12'
+
+    //spring-boot
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    //spring-boot thymeleaf
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
